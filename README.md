@@ -13,3 +13,12 @@ Folder Tree :
   - scene.php (File where all the party code are.)
 
 
+To do :
+- Select elements.
+- Move and Zoom when a specific element.
+- Setup base visual
+- Saving and restoring method with database
+- Login method
+- GM right attribution
+- Character sheet view
+- Character sheet GM attribution
