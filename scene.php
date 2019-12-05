@@ -196,6 +196,14 @@
 			$('#list2 .delete').on('click', function(){
 				deleteImage($(this));
 			});
+			
+			$(document).on("mousedown", '#playingGround', function(event){
+				if(event.which == 2){
+					e.preventDefault();
+					console.log("middle mouse");
+					//Make ping action
+				}
+			});
 	}, 20);
 
 	//Set the selected item on the right list and put the image associate first
