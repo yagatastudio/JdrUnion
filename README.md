@@ -14,7 +14,7 @@ Folder Tree :
 
 
 To do :
-- [x]Select elements. (Done)
+- [x] Select elements. (Done)
 - [ ] Move and Zoom when a specific element. (Need to test!)
 - [ ] Setup base visual
 - [ ] Saving and restoring method with database
