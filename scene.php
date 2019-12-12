@@ -99,10 +99,13 @@
 </div>
 <script>
 	const selectedFolder = "image";
+	const zoomRatio = 0.15;
 	var maxIndex = 0;
 	var fileIntoSelectedFolder = new Array();
 	var fileInPlayingGround = new Array();
 	var selectedItem = "";
+	var mouseX = 0;
+	var mouseY = 0;
 
 	$(document).on('contextmenu', function(event) {
 		event.preventDefault();
@@ -189,8 +192,10 @@
 				setSelectedItem($(this).find('div').attr('id').replace('list_', ''));
 			});
 
-			$('#playingGround img').on('click', function(){
+			$('#playingGround img').on('click', function(event){
 				setSelectedItem($(this).attr('id'));
+				mouseX = event.clientX;
+				mouseY = event.clientY;
 			});
 
 			$('#list2 .delete').on('click', function(){
@@ -199,9 +204,62 @@
 			
 			$(document).on("mousedown", '#playingGround', function(event){
 				if(event.which == 2){
-					e.preventDefault();
+					event.preventDefault();
 					console.log("middle mouse");
 					//Make ping action
+				}
+			});
+			
+			//NEED TO TEST!!
+			$(document).on("mousemove", function(event){
+				//Detect if left click is pressed
+				var mouseDiffPosX = 0;
+				var mouseDiffPosY = 0;
+				if(event.which == 1){
+					//prevent default event
+					event.preventDefault();
+					//get actual mouse position
+					//Define the diff between first mouse position and current position
+					mouseDiffPosX = event.clientX - mouseX;
+					mouseDiffPosY = event.clientY - mouseY;
+					//Actualize mouse position NEED TO TEST!!
+					$('"#'+ selectedItem +'"').css({top: $('"#'+ selectedItem+'"').offset.top + mouseDiffPosY, left: $('"#'+ selectedItem+'"').offset.left + mouseDiffPosX});
+				}
+			});
+			
+			//NEED TO TEST!!!
+			$('#playingGround').on('mousewheel DOMMouseScroll', function(event){
+				if(selectedItem != null && selectedItem != ""){
+					if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
+						if(e.originalEvent.detail > 0) {
+							//reduce size of the image
+							var posX = ($('"#'+ selectedItem +'"').width()/zoomRatio - $('"#'+ selectedItem +'"').width())/2;
+							var posY = ($('"#'+ selectedItem +'"').height()/zoomRatio - $('"#'+ selectedItem +'"').height())/2;
+							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()/zoomRatio), height: ($('"#'+ selectedItem +'"').height()/zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							console.log('Down');
+						} else if(e.originalEvent.detail < 0){
+							//increase size of the image
+							var posX = ($('"#'+ selectedItem +'"').width()*zoomRatio - $('"#'+ selectedItem +'"').width())/2;
+							var posY = ($('"#'+ selectedItem +'"').height()*zoomRatio - $('"#'+ selectedItem +'"').height())/2;
+							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()*zoomRatio), height: ($('"#'+ selectedItem +'"').height()*zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							console.log('Up');
+						}
+					  } else if (typeof e.originalEvent.wheelDelta == 'number') {
+						if(e.originalEvent.wheelDelta < 0) {
+							//reduce size of the image
+							var posX = ($('"#'+ selectedItem +'"').width()/zoomRatio - $('"#'+ selectedItem +'"').width())/2;
+							var posY = ($('"#'+ selectedItem +'"').height()/zoomRatio - $('"#'+ selectedItem +'"').height())/2;
+							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()/zoomRatio), height: ($('"#'+ selectedItem +'"').height()/zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							console.log('Down');
+						} else if(e.originalEvent.wheelDelta > 0) {
+							//increase size of the image
+							var posX = ($('"#'+ selectedItem +'"').width()*zoomRatio - $('"#'+ selectedItem +'"').width())/2;
+							var posY = ($('"#'+ selectedItem +'"').height()*zoomRatio - $('"#'+ selectedItem +'"').height())/2;
+							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()*zoomRatio), height: ($('"#'+ selectedItem +'"').height()*zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							console.log('Up');
+						}
+					  }
+					  event.preventDefault();
 				}
 			});
 	}, 20);
