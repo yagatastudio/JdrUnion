@@ -230,6 +230,7 @@
 			//NEED TO TEST!!!
 			$('#playingGround').on('mousewheel DOMMouseScroll', function(event){
 				if(selectedItem != null && selectedItem != ""){
+					console.log(selectedItem);
 					if(typeof event.originalEvent.detail == 'number' && event.originalEvent.detail !== 0) {
 						if(event.originalEvent.detail > 0) {
 							//reduce size of the image
@@ -266,16 +267,15 @@
 
 	//Set the selected item on the right list and put the image associate first
 	function setSelectedItem(objId){
-		console.log("init: selected Image");
 		if(objId && typeof objId != 'undefined'){
-			console.log("if passed");
-			if(selectedItem != document.getElementById('list_'+objId).parentElement){
+			if(document.getElementById('list_'+objId).parentElement == null){
+				var _selectedItemContainer = document.getElementById('list_'+objId).parentElement;
 				var allListObj = document.getElementsByClassName('container');
 				for (var i = 0; i < allListObj.length; i++) {
 					allListObj[i].classList.remove('selectedItem')
 				}
-				selectedItem = document.getElementById('list_'+objId).parentElement;
-				selectedItem.classList.add('selectedItem');
+				selectedItem = objId;
+				_selectedItemContainer.classList.add('selectedItem');
 				var allListImg = document.getElementById('playingGround').children;
 				for (var i = 0; i < allListImg.length; i++) {
 					allListImg[i].classList.remove('selectedImage');
@@ -283,7 +283,6 @@
 				document.getElementById(objId).classList.add('selectedImage');
 			}
 		}else{
-			console.log(objId);
 			selectedItem = "";
 		}
 	}
