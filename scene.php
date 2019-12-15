@@ -230,28 +230,28 @@
 			//NEED TO TEST!!!
 			$('#playingGround').on('mousewheel DOMMouseScroll', function(event){
 				if(selectedItem != null && selectedItem != ""){
-					if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
-						if(e.originalEvent.detail > 0) {
+					if(typeof event.originalEvent.detail == 'number' && event.originalEvent.detail !== 0) {
+						if(event.originalEvent.detail > 0) {
 							//reduce size of the image
 							var posX = ($('#'+ selectedItem).width()/zoomRatio - $('#'+ selectedItem).width())/2;
 							var posY = ($('#'+ selectedItem).height()/zoomRatio - $('#'+ selectedItem).height())/2;
 							$('#'+ selectedItem).css({width: ($('#'+ selectedItem).width()/zoomRatio), height: ($('#'+ selectedItem).height()/zoomRatio), top: $('#'+ selectedItem).offset.top + posY, left: $('#'+ selectedItem).offset.left + posX});
 							console.log('Down');
-						} else if(e.originalEvent.detail < 0){
+						} else if(event.originalEvent.detail < 0){
 							//increase size of the image
 							var posX = ($('#'+ selectedItem).width()*zoomRatio - $('#'+ selectedItem).width())/2;
 							var posY = ($('#'+ selectedItem).height()*zoomRatio - $('#'+ selectedItem).height())/2;
 							$('#'+ selectedItem).css({width: ($('#'+ selectedItem).width()*zoomRatio), height: ($('#'+ selectedItem).height()*zoomRatio), top: $('#'+ selectedItem).offset.top + posY, left: $('#'+ selectedItem).offset.left + posX});
 							console.log('Up');
 						}
-					  } else if (typeof e.originalEvent.wheelDelta == 'number') {
-						if(e.originalEvent.wheelDelta < 0) {
+					  } else if (typeof event.originalEvent.wheelDelta == 'number') {
+						if(event.originalEvent.wheelDelta < 0) {
 							//reduce size of the image
 							var posX = ($('#'+ selectedItem).width()/zoomRatio - $('#'+ selectedItem).width())/2;
 							var posY = ($('#'+ selectedItem).height()/zoomRatio - $('#'+ selectedItem).height())/2;
 							$('#'+ selectedItem).css({width: ($('#'+ selectedItem).width()/zoomRatio), height: ($('#'+ selectedItem).height()/zoomRatio), top: $('#'+ selectedItem).offset.top + posY, left: $('#'+ selectedItem).offset.left + posX});
 							console.log('Down');
-						} else if(e.originalEvent.wheelDelta > 0) {
+						} else if(event.originalEvent.wheelDelta > 0) {
 							//increase size of the image
 							var posX = ($('#'+ selectedItem).width()*zoomRatio - $('#'+ selectedItem).width())/2;
 							var posY = ($('#'+ selectedItem).height()*zoomRatio - $('#'+ selectedItem).height())/2;
@@ -267,7 +267,7 @@
 	//Set the selected item on the right list and put the image associate first
 	function setSelectedItem(objId){
 		console.log("init: selected Image");
-		if(objId != null && typeof obj != 'undefined'){
+		if(objId && typeof objId != 'undefined'){
 			console.log("if passed");
 			if(selectedItem != document.getElementById('list_'+objId).parentElement){
 				var allListObj = document.getElementsByClassName('container');
