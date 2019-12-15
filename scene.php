@@ -114,7 +114,7 @@
 	//Set by interval the array fileIntoSelectedFolder and populate the object with id #list
 	setInterval(function(){
 		$.ajax({
-			url: "/test/"+selectedFolder+"/",
+			url: selectedFolder+"/",
 			success: function(_data){
 				$(_data).find("td > a").each(function(){
 					if(openFile($(this).attr("href"))){
@@ -223,7 +223,7 @@
 					mouseDiffPosX = event.clientX - mouseX;
 					mouseDiffPosY = event.clientY - mouseY;
 					//Actualize mouse position NEED TO TEST!!
-					$('"#'+ selectedItem +'"').css({top: $('"#'+ selectedItem+'"').offset.top + mouseDiffPosY, left: $('"#'+ selectedItem+'"').offset.left + mouseDiffPosX});
+					$('#'+ selectedItem).css({top: $('#'+ selectedItem).offset.top + mouseDiffPosY, left: $('#'+ selectedItem).offset.left + mouseDiffPosX});
 				}
 			});
 			
@@ -233,29 +233,29 @@
 					if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
 						if(e.originalEvent.detail > 0) {
 							//reduce size of the image
-							var posX = ($('"#'+ selectedItem +'"').width()/zoomRatio - $('"#'+ selectedItem +'"').width())/2;
-							var posY = ($('"#'+ selectedItem +'"').height()/zoomRatio - $('"#'+ selectedItem +'"').height())/2;
-							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()/zoomRatio), height: ($('"#'+ selectedItem +'"').height()/zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							var posX = ($('#'+ selectedItem).width()/zoomRatio - $('#'+ selectedItem).width())/2;
+							var posY = ($('#'+ selectedItem).height()/zoomRatio - $('#'+ selectedItem).height())/2;
+							$('#'+ selectedItem).css({width: ($('#'+ selectedItem).width()/zoomRatio), height: ($('#'+ selectedItem).height()/zoomRatio), top: $('#'+ selectedItem).offset.top + posY, left: $('#'+ selectedItem).offset.left + posX});
 							console.log('Down');
 						} else if(e.originalEvent.detail < 0){
 							//increase size of the image
-							var posX = ($('"#'+ selectedItem +'"').width()*zoomRatio - $('"#'+ selectedItem +'"').width())/2;
-							var posY = ($('"#'+ selectedItem +'"').height()*zoomRatio - $('"#'+ selectedItem +'"').height())/2;
-							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()*zoomRatio), height: ($('"#'+ selectedItem +'"').height()*zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							var posX = ($('#'+ selectedItem).width()*zoomRatio - $('#'+ selectedItem).width())/2;
+							var posY = ($('#'+ selectedItem).height()*zoomRatio - $('#'+ selectedItem).height())/2;
+							$('#'+ selectedItem).css({width: ($('#'+ selectedItem).width()*zoomRatio), height: ($('#'+ selectedItem).height()*zoomRatio), top: $('#'+ selectedItem).offset.top + posY, left: $('#'+ selectedItem).offset.left + posX});
 							console.log('Up');
 						}
 					  } else if (typeof e.originalEvent.wheelDelta == 'number') {
 						if(e.originalEvent.wheelDelta < 0) {
 							//reduce size of the image
-							var posX = ($('"#'+ selectedItem +'"').width()/zoomRatio - $('"#'+ selectedItem +'"').width())/2;
-							var posY = ($('"#'+ selectedItem +'"').height()/zoomRatio - $('"#'+ selectedItem +'"').height())/2;
-							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()/zoomRatio), height: ($('"#'+ selectedItem +'"').height()/zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							var posX = ($('#'+ selectedItem).width()/zoomRatio - $('#'+ selectedItem).width())/2;
+							var posY = ($('#'+ selectedItem).height()/zoomRatio - $('#'+ selectedItem).height())/2;
+							$('#'+ selectedItem).css({width: ($('#'+ selectedItem).width()/zoomRatio), height: ($('#'+ selectedItem).height()/zoomRatio), top: $('#'+ selectedItem).offset.top + posY, left: $('#'+ selectedItem).offset.left + posX});
 							console.log('Down');
 						} else if(e.originalEvent.wheelDelta > 0) {
 							//increase size of the image
-							var posX = ($('"#'+ selectedItem +'"').width()*zoomRatio - $('"#'+ selectedItem +'"').width())/2;
-							var posY = ($('"#'+ selectedItem +'"').height()*zoomRatio - $('"#'+ selectedItem +'"').height())/2;
-							$('"#'+ selectedItem +'"').css({width: ($('"#'+ selectedItem +'"').width()*zoomRatio), height: ($('"#'+ selectedItem +'"').height()*zoomRatio), top: $('"#'+ selectedItem +'"').offset.top + posY, left: $('"#'+ selectedItem +'"').offset.left + posX});
+							var posX = ($('#'+ selectedItem).width()*zoomRatio - $('#'+ selectedItem).width())/2;
+							var posY = ($('#'+ selectedItem).height()*zoomRatio - $('#'+ selectedItem).height())/2;
+							$('#'+ selectedItem).css({width: ($('#'+ selectedItem).width()*zoomRatio), height: ($('#'+ selectedItem).height()*zoomRatio), top: $('#'+ selectedItem).offset.top + posY, left: $('#'+ selectedItem).offset.left + posX});
 							console.log('Up');
 						}
 					  }
