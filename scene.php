@@ -267,7 +267,7 @@
 	//Set the selected item on the right list and put the image associate first
 	function setSelectedItem(objId){
 		console.log("init: selected Image");
-		if(objId && typeof obj != 'undefined'){
+		if(objId != null && typeof obj != 'undefined'){
 			console.log("if passed");
 			if(selectedItem != document.getElementById('list_'+objId).parentElement){
 				var allListObj = document.getElementsByClassName('container');
