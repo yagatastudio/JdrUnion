@@ -14,11 +14,12 @@ Folder Tree :
 
 
 To do :
-- Select elements. (Done)
-- Move and Zoom when a specific element.
-- Setup base visual
-- Saving and restoring method with database
-- Login method
-- GM right attribution
-- Character sheet view
-- Character sheet GM attribution
+- [x] Select elements. (Done)
+- [ ] Move and Zoom when a specific element. (Need to test!)
+- [ ] Setup base visual
+- [ ] Saving and restoring method with database
+- [ ] Login method
+- [ ] GM right attribution
+- [ ] Character sheet view
+- [ ] Character sheet GM attribution
+- [x] Ping (Need to test! and choose ping style to show)
