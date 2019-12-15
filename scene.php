@@ -210,27 +210,11 @@
 				}
 			});
 			
-			//NEED TO TEST!!
-			$(document).on("mousemove", function(event){
-				//Detect if left click is pressed
-				var mouseDiffPosX = 0;
-				var mouseDiffPosY = 0;
-				if(event.which == 1){
-					//prevent default event
-					event.preventDefault();
-					//get actual mouse position
-					//Define the diff between first mouse position and current position
-					mouseDiffPosX = event.clientX - mouseX;
-					mouseDiffPosY = event.clientY - mouseY;
-					//Actualize mouse position NEED TO TEST!!
-					$('#'+ selectedItem).css({top: $('#'+ selectedItem).offset.top + mouseDiffPosY, left: $('#'+ selectedItem).offset.left + mouseDiffPosX});
-				}
-			});
+			
 			
 			//NEED TO TEST!!!
 			$('#playingGround').on('mousewheel DOMMouseScroll', function(event){
 				if(selectedItem != null && selectedItem != ""){
-					console.log(selectedItem);
 					if(typeof event.originalEvent.detail == 'number' && event.originalEvent.detail !== 0) {
 						if(event.originalEvent.detail > 0) {
 							//reduce size of the image
@@ -265,10 +249,35 @@
 			});
 	}, 20);
 
+	//NEED TO TEST!!
+	$(document).on("mousemove", function(event){
+		moveImage(event);
+	});
+
+	function moveImage(event){
+		//Detect if left click is pressed
+		var mouseDiffPosX = 0;
+		var mouseDiffPosY = 0;
+		if(event.which == 1 && selectedItem){
+			//get actual mouse position
+			//event.preventDefault();
+			event.preventDefault();
+			//Define the diff between first mouse position and current position
+			mouseDiffPosX = event.clientX - mouseX;
+			mouseDiffPosY = event.clientY - mouseY;
+			var obj = document.getElementById(selectedItem);
+			var left = obj.style.left+mouseDiffPosX;
+			var top = obj.style.top+mouseDiffPosY;
+			//Actualize mouse position NEED TO TEST!!
+			obj.style.top = top+"px";
+			obj.style.left = left+"px";
+		}
+	}
+
 	//Set the selected item on the right list and put the image associate first
 	function setSelectedItem(objId){
 		if(objId && typeof objId != 'undefined'){
-			if(document.getElementById('list_'+objId).parentElement == null){
+			if(document.getElementById('list_'+objId).parentElement != null){
 				var _selectedItemContainer = document.getElementById('list_'+objId).parentElement;
 				var allListObj = document.getElementsByClassName('container');
 				for (var i = 0; i < allListObj.length; i++) {

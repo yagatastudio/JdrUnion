@@ -52,7 +52,7 @@
 					data = _data;
 				}
 			});
-	    }, 20);
+	    }, 2000);
 
 	    function download(filename, text) {
 		  var element = document.createElement('a');
