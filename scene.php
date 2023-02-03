@@ -1,4 +1,4 @@
-<style type="text/css">
+<style type="text/css"> 
 	#playingGround{
 		width: 100%;
 		height: 100%;
